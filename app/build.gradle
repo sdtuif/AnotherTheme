@@ -42,7 +42,6 @@ android {
         buildConfigField "String", "IV_KEY", "\"" + IV_KEY + "\""
         buildConfigField "byte[]", "DECRYPTION_KEY", String.valueOf("\"" + KEY + "\"").replace("\"", "").replace("[", "{").replace("]", "}")
         buildConfigField "byte[]", "IV_KEY", String.valueOf("\"" + IV_KEY + "\"").replace("\"", "").replace("[", "{").replace("]", "}")
-        resValue "string", "encryption_status", (shouldEncrypt() ? "onCompileVerify" : "false")
     }
     buildTypes {
         debug {
@@ -143,7 +142,6 @@ project.afterEvaluate {
 gradle.buildFinished {
     def tempAssets = new File(getProjectDir(), "/src/main/assets-temp")
     if (tempAssets.exists()) {
-        println("Cleaning duplicated encrypted assets, not your decrypted assets...")
         def encryptedAssets = new File(getProjectDir(), "src/main/assets")
         encryptedAssets.deleteDir()
 
@@ -162,9 +160,4 @@ gradle.buildFinished {
         }
         tempAssets.deleteDir()
     }
-}
-
-boolean shouldEncrypt() {
-    ArrayList<String> tasks = project.gradle.startParameter.taskNames
-    return SHOULD_ENCRYPT_ASSETS && Arrays.toString(tasks).toLowerCase().contains("release")
 }
