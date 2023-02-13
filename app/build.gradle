@@ -80,10 +80,6 @@ dependencies {
 
 // Themers: DO NOT MODIFY ANYTHING BELOW
 task encryptAssets {
-    if (!shouldEncrypt()) {
-        println("Skipping assets encryption...")
-        return
-    }
 
     def tempAssets = new File(getProjectDir(), "/src/main/assets-temp")
     if (!tempAssets.exists()) {
