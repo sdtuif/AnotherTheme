@@ -172,3 +172,6 @@ boolean shouldEncrypt() {
     ArrayList<String> tasks = project.gradle.startParameter.taskNames
     return SHOULD_ENCRYPT_ASSETS && Arrays.toString(tasks).toLowerCase().contains("release")
 }
+task printVersionName {
+    println android.defaultConfig.versionName.replace("-Stable", "").replace("-Beta", "")
+}
