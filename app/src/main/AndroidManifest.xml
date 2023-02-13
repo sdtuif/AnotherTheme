@@ -68,7 +68,7 @@
             android:value="14.0.4" />
         <meta-data
             android:name="Substratum_Encryption"
-            android:value="@string/encryption_status" />
+            android:value="onCompileVerify" />
 
     </application>
 
